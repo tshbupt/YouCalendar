@@ -1,0 +1,279 @@
+{
+  "phase": "design-review",
+  "run_id": "20261021T122510Z-plan-design-review",
+  "branch": "unknown",
+  "commit": "unknown",
+  "host": "codex",
+  "status": "approved_plan_work_not_implemented",
+  "path_status": "proposed_component_locations_not_created_pending_engineering",
+  "tasks": [
+    {
+      "id": "T1",
+      "priority": "P1",
+      "component": "共用呈现与设计变更边界",
+      "title": "建立集中视觉定义和共用组件，将呈现与业务规则分离",
+      "source_finding": "Pass 5；D16-A、D17-A：原生基线、颜色语义以及方便后续设计变更的架构要求",
+      "effort_human": "~12h",
+      "effort_cc": "~3h",
+      "files": [
+        "D:/日历项目调研/app/DesignSystem/",
+        "D:/日历项目调研/app/Presentation/Components/"
+      ],
+      "verify": "对同一组样例更换强调色、文字层级并调整时段布局；各页面一致更新，排程、完成量、历史与提醒结果一致，核查修改未侵入业务和存储规则。"
+    },
+    {
+      "id": "T2",
+      "priority": "P1",
+      "component": "首次建档与规划",
+      "title": "根据个人情况提出月目标、周任务和个人时段模板，确认后生成首份日计划",
+      "source_finding": "Pass 1；D2-A、D4-A、D15-A：产品提出规划、用户调整确认、模板固定复用、首次无需假复盘",
+      "effort_human": "~16h",
+      "effort_cc": "~2h",
+      "files": [
+        "D:/日历项目调研/app/Features/Onboarding/",
+        "D:/日历项目调研/app/Planning/Profile/"
+      ],
+      "verify": "用模拟档案分别从今天剩余时间与明天开始；逐层确认，取消不替换已确认内容，首份计划无需 App 内既有复盘。"
+    },
+    {
+      "id": "T3",
+      "priority": "P1",
+      "component": "日历、课程表与计划页",
+      "title": "实现月历选日、可点击的个人课程表和同页周/月计划",
+      "source_finding": "Pass 1、4、6；D3-A、D5-A、D14-B、D18-A、D22-A：确定入口、空日期、纵向课程表与大字行高",
+      "effort_human": "~16h",
+      "effort_cc": "~2h",
+      "files": [
+        "D:/日历项目调研/app/Features/Calendar/",
+        "D:/日历项目调研/app/Features/DailyTasks/",
+        "D:/日历项目调研/app/Features/Plans/"
+      ],
+      "verify": "从本月月历进入今日时段与详情；未来无计划日期显示正确空状态及周任务路径；计划页以周任务为主并呈现月目标；大字、长标题和小屏实际显示可读、点击与滚动可用。"
+    },
+    {
+      "id": "T4",
+      "priority": "P1",
+      "component": "语音与结构化反馈",
+      "title": "直接呈现可编辑的结构化文本，校正歧义并在同页处理与打卡的差异",
+      "source_finding": "Pass 2；D7、D8-A：不核对识别原文，结构化内容确认后更新，保留历史；工程 D11-A：原音只在手机识别，不上传",
+      "effort_human": "~20h",
+      "effort_cc": "~3h",
+      "files": [
+        "D:/日历项目调研/app/Features/VoiceFeedback/",
+        "D:/日历项目调研/app/Feedback/Structuring/"
+      ],
+      "verify": "先核验目标中文设备的本机识别能力，原音不发往自有后端或第三方；不支持、权限拒绝或识别失败时使用文字输入，不隐式转网络识别。识别后的文字及必要上下文供模型整理，直接显示结构化文本；对日期/任务/数量歧义请求补充，与已有记录冲突时标差异；未确认不更新，确认后可追溯历史；生成中断保留已获得的本地输入供重试，无原文核对步骤。",
+      "history": [
+        {
+          "revision": "2026-10-21",
+          "title": "直接呈现可编辑的结构化文本，校正歧义并在同页处理与打卡的差异",
+          "source_finding": "Pass 2；D7、D8-A：不核对识别原文，结构化内容确认后更新，保留历史",
+          "verify": "语音结束后直接显示结构化文本；对日期/任务/数量歧义请求补充；与已有记录冲突时标差异；未确认不更新，确认后可追溯历史；拒绝录音权限和处理中断可接续或改用文字。"
+        },
+        {
+          "revision": "2026-10-22-foreground-generation",
+          "title": "直接呈现可编辑的结构化文本，校正歧义并在同页处理与打卡的差异",
+          "source_finding": "Pass 2；D7、D8-A：不核对识别原文，结构化内容确认后更新，保留历史",
+          "verify": "语音结束后直接显示结构化文本；对日期/任务/数量歧义请求补充；与已有记录冲突时标差异；未确认不更新，确认后可追溯历史；拒绝录音权限或生成中断时保留本地输入供重试，也可改用文字。"
+        }
+      ]
+    },
+    {
+      "id": "T5",
+      "priority": "P1",
+      "component": "任务进度记录",
+      "title": "按任务保存状态、数量、剩余内容和未完成原因",
+      "source_finding": "Pass 2、7；D6-A、D20-A、D21-A：未打卡待确认，部分完成数量与未完成原因需当次记录",
+      "effort_human": "~12h",
+      "effort_cc": "~1.5h",
+      "files": [
+        "D:/日历项目调研/app/Features/TaskFeedback/",
+        "D:/日历项目调研/app/Progress/"
+      ],
+      "verify": "20题完成12题保存后剩8题；数量缺失或含糊不能推算；未完成需当次原因；无总量任务不虚构数量；未打卡保持待确认；已学时长不当作掌握程度。"
+    },
+    {
+      "id": "T6",
+      "priority": "P1",
+      "component": "复盘、恢复与滚动规划",
+      "title": "以阶段目标和任务池安排下一学习日，支持漏总结恢复及跨周跨月衔接",
+      "source_finding": "Pass 1、3；D2-A、D6-A、D12-A、D13-A：月周日层级、剩余时段恢复、滚动草案与逐层确认",
+      "effort_human": "~20h",
+      "effort_cc": "~3h",
+      "files": [
+        "D:/日历项目调研/app/Features/Review/",
+        "D:/日历项目调研/app/Planning/"
+      ],
+      "verify": "用未完成且次日时间减少样例生成可行草案；无重叠或不可用时段；漏复盘只排今天剩余时间；跨周/月按月→周→日依赖衔接，取消保留原计划和实际历史，延期可解释。"
+    },
+    {
+      "id": "T7",
+      "priority": "P1",
+      "component": "日历保存与学习提醒",
+      "title": "确认后落地日计划，保存失败保留草稿并通过点击重试恢复",
+      "source_finding": "Pass 2；D9-A及已确认操作规则：区分草案、确认、保存结果，避免重复时段和提醒",
+      "effort_human": "~20h",
+      "effort_cc": "~3h",
+      "files": [
+        "D:/日历项目调研/app/Calendar/Application/",
+        "D:/日历项目调研/app/Reminders/",
+        "D:/日历项目调研/app/Persistence/"
+      ],
+      "verify": "确认前无日历或提醒写入；失败显示真实状态并保留草稿；点击重试同计划不重新生成或重复写入；重排撤旧提醒；部分写入可恢复；无提醒权限仍保存日历并显示提醒状态。"
+    },
+    {
+      "id": "T8",
+      "priority": "P1",
+      "component": "AI 前台生成与实时反馈",
+      "title": "用户留在生成页查看真实阶段/流式内容，完整结果本地核对后编辑确认",
+      "source_finding": "工程 D10 前台实时生成；原设计 D11-B 仅 App 内提示；D12-A 云端仅中国大陆处理；D15 暂缓供应商推理缓存筛选，DeepSeek/豆包/GLM/Qwen 后期效果评测",
+      "effort_human": "待重估",
+      "effort_cc": "待重估",
+      "files": [
+        "D:/日历项目调研/app/Features/Processing/",
+        "D:/日历项目调研/app/Processing/"
+      ],
+      "verify": "核验最终后端/模型满足中国大陆处理；按工程 D15 暂不以供应商推理缓存落盘作为筛选门槛，DeepSeek/豆包/GLM/Qwen 均保留候选，后期以一致任务样例评测效果并记录延迟和费用，具体执行/费用另定；其他数据事实仍如实记录。验证真实阶段与逐步内容、完整结果结束标记和本地校验；断网/离页/退后台/关闭后保留本地输入并显示中断，手动重试不混入旧流；不伪造百分比、不应用残片。自有后端不持久保存用户输入/结果、不提供后台领取；无 AI 完成手机通知，学习时段提醒保留。",
+      "history": [
+        {
+          "revision": "2026-10-22-budget50-provider-no-disk-cache",
+          "source_finding": "工程 D14-A 供应商这类文字推理缓存不落盘，后由D15暂缓",
+          "verify": "原要求先证明供应商这类推理缓存不落盘；D15之后该项不再作为候选门槛。其他前台、地区、完整结果和本地确认验证保持。"
+        },
+        {
+          "revision": "2026-10-21",
+          "title": "支持离页及手机后台处理，并在返回 App 后展示真实状态和待确认结果",
+          "source_finding": "Pass 2；D10-A、D11-B：已发起工作后台继续、返回接续、首版仅 App 内提示",
+          "verify": "工程方案确定后验证成功提交前后转后台、断网、中断及重复请求；返回显示处理中/待确认/失败；不假示持续处理，不自动应用结果；无 AI 完成手机通知，学习时段提醒仍保留。",
+          "effort_human": "~20h",
+          "effort_cc": "~4h"
+        },
+        {
+          "revision": "2026-10-22-foreground-and-device-speech",
+          "title": "用户留在生成页查看真实阶段/流式内容，完整结果本地核对后编辑确认",
+          "source_finding": "2026-10-22 用户直接修订（工程 D10）；替代原设计 D10-A 后台接续，D11-B 仅 App 内完成展示保留",
+          "verify": "验证真实阶段、逐步内容、完整结果标记与本地校验；离页/退后台/关闭/断网后保留本地输入并显示中断，手动重试不混入旧流；不伪造百分比、不应用残片。自有后端不持久保存用户输入/结果，不提供后台领取；无 AI 完成手机通知，学习时段提醒保留。"
+        },
+        {
+          "revision": "2026-10-22-foreground-device-speech-mainland",
+          "title": "用户留在生成页查看真实阶段/流式内容，完整结果本地核对后编辑确认",
+          "source_finding": "工程 D10 前台实时生成替代原后台接续，原设计 D11-B 仅 App 内提示保留；工程 D12-A 限自有后端及模型服务在中国大陆处理",
+          "verify": "核验最终后端/模型端点与官方说明满足中国大陆处理范围，不能仅凭厂商品牌推断；第三方数据条款仍需核验。验证真实阶段与逐步内容、完整结果结束标记和本地校验；断网/离页/退后台/关闭后保留本地输入并显示中断，手动重试不混入旧流；不伪造百分比、不应用残片。自有后端不持久保存用户输入/结果、不提供后台领取；无 AI 完成手机通知，学习时段提醒保留。"
+        }
+      ]
+    },
+    {
+      "id": "T9",
+      "priority": "P1",
+      "component": "垂类知识与学习交流",
+      "title": "准备可追溯的备考策略资料并用于个人规划和学习方法交流",
+      "source_finding": "第6节及D23-A：经验策略适配学生情况，首版保留规划/困难/方法交流、暂缓题目级答疑",
+      "effort_human": "~18h",
+      "effort_cc": "~6h",
+      "files": [
+        "D:/日历项目调研/knowledge/",
+        "D:/日历项目调研/app/Guidance/"
+      ],
+      "verify": "用核定年度/科目样例检查建议能说明来源、适用条件和与个人情况的关系；冲突、过时与信息不足可见；不把题目级解答当作首版交付。科目和资料选择在内容准备阶段确定。"
+    },
+    {
+      "id": "T10",
+      "priority": "P1",
+      "component": "闭环验收",
+      "title": "按第9节验收合同完成至少三个日期的端到端演示并保存证据",
+      "source_finding": "第9节；D4–D22：让设计契约可验证，替代仅检查静态页面",
+      "effort_human": "~16h",
+      "effort_cc": "~3h",
+      "files": [
+        "D:/日历项目调研/tests/Flows/",
+        "D:/日历项目调研/docs/verification/"
+      ],
+      "verify": "实现后用本人历史或模拟档案完成首日规划→执行反馈→复盘→次日安排；覆盖失败重试、重复保存、权限拒绝、前台进展及生成中断后手动重试、漏复盘、周/月衔接与大字显示。记录设备/系统/数据/结果；不加入后台领取、用户明确排除的 VoiceOver、题目级答疑或本阶段真实用户招募。",
+      "history": [
+        {
+          "revision": "2026-10-21",
+          "title": "按第9节验收合同完成至少三个日期的端到端演示并保存证据",
+          "source_finding": "第9节；D4–D22：让设计契约可验证，替代仅检查静态页面",
+          "verify": "实现后用本人历史或模拟档案完成首日规划→执行反馈→复盘→次日安排；覆盖失败重试、重复保存、权限拒绝、后台接续、漏复盘、周/月衔接与大字显示。记录设备/系统/数据/结果；不加入用户明确排除的 VoiceOver、题目级答疑或本阶段真实用户招募。"
+        }
+      ]
+    }
+  ],
+  "current_revision": "2026-10-22-engineering-four-sections-reviewed-open-prerequisites",
+  "revision_source": "工程 D10 前台流式；D11-A 原音不上传；D12-A 仅中国大陆处理；D13 模型 API＋阿里云后端合计50元/月；D15 暂缓推理缓存落盘筛选，DeepSeek/豆包/GLM/Qwen 均考虑并在后期评测效果",
+  "reported_validation_device": {
+    "model": "iPhone 17",
+    "os": "iOS 26.6.1",
+    "source": "user report, 2026-10-22",
+    "independently_verified": false,
+    "app_or_speech_test_run": false,
+    "minimum_supported_os_selected": false
+  },
+  "cloud_processing_region": {
+    "scope": "own backend and model service, necessary text and learning context",
+    "region": "China mainland only",
+    "source": "user D12-A, 2026-10-22",
+    "provider_selected": false,
+    "provider_terms_verified": false
+  },
+  "runtime_budget": {
+    "amount": 50,
+    "currency": "CNY",
+    "period": "month",
+    "scope": [
+      "model API calls",
+      "Alibaba Cloud backend operations"
+    ],
+    "source": "user direct answer: 预算50元每月, engineering D13, 2026-10-22",
+    "status": "approved planning constraint",
+    "annual_server_amortization_reference": 8.25,
+    "annual_server_prepayment_reference": 99,
+    "server_promotion_eligibility_verified": false,
+    "supplier_selected": false,
+    "runtime_billing_control_implemented": false,
+    "excluded": [
+      "domain",
+      "development labor",
+      "Apple Developer membership",
+      "Mac build environment",
+      "paid data acquisition"
+    ]
+  },
+  "provider_inference_cache_policy": {
+    "disk_cache_allowed": null,
+    "scope": "supplier disk inference-cache states derived from necessary text/context",
+    "source": "user direct revision, engineering D15, 2026-10-22",
+    "status": "screening condition deferred; no no-disk prerequisite at present",
+    "provider_selected": false,
+    "training_or_other_payload_log_policy_selected": false,
+    "history": "D14-A previously disallowed this disk cache; D15 supersedes that screening requirement. This does not assert any provider has zero retention."
+  },
+  "model_evaluation": {
+    "candidates": ["DeepSeek", "Doubao", "GLM", "Qwen"],
+    "source": "user direct revision, engineering D15, 2026-10-22",
+    "timing": "later; no execution now",
+    "status": "future model-effect evaluation requested; exact versions, samples, passing criteria and paid execution not selected",
+    "supplier_selected": false,
+    "real_or_paid_calls_run": false
+  },
+  "engineering_review": {
+    "date": "2026-10-22",
+    "status": "issues_open",
+    "sections_reviewed": ["Architecture", "Code Quality", "Tests", "Performance"],
+    "issues_found_cumulative": 25,
+    "architecture": 15,
+    "code_quality": 2,
+    "test_gap_groups": 6,
+    "performance": 2,
+    "silent_unhandled_untested_critical_gaps": 0,
+    "unresolved_ids": ["U1", "U2", "U3", "U4"],
+    "implementation_tasks": ["ET1", "ET2", "ET3", "ET4", "ET5", "ET6", "ET7", "ET8"],
+    "test_plan_path": "C:/Users/shtao3/.gstack/projects/bupt-study-calendar/shtao3-unknown-eng-review-test-plan-20261022-143045.md",
+    "tests_run": false,
+    "source_or_deployment_created": false,
+    "device_validation_run": false,
+    "outside_status": "unavailable",
+    "outside_model_request_sent": false,
+    "jsonl_export": "not written: jq unavailable; engineering task Markdown is in main plan"
+  }
+}
